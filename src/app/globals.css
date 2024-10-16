@@ -17,11 +17,46 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Fira Code', monospace; /* Cambié aquí la fuente */
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply rounded-md px-4 py-2 font-thin transition-all duration-100 ease-in-out; /* Añadí padding y una transición suave */
+    border-radius: 0.5em;
+  }
+}
+@layer components {
+  .btn-primary {
+    @apply bg-accent-100 text-primary-200 border-primary-200 border text-center;
+  }
+
+  .btn-primary:hover {
+    @apply bg-[#ff903c] text-primary-200 border-primary-200;
+  }
+}
+@layer components {
+  .btn-default {
+    @apply bg-[#1C2B3A] text-white text-center;
+  }
+
+  .btn-default:hover {
+    @apply bg-[#263B50] text-white;
+  }
+}
+@layer components {
+  .btn-ghost {
+    @apply bg-transparent text-white border border-white;
+    border-radius: 0.5em;
+  }
+
+  .btn-ghost:hover {
+    @apply bg-transparent text-white border-white/50;
   }
 }
