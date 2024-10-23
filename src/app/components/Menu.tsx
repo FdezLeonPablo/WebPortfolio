@@ -29,11 +29,11 @@ const folderStructure: FolderOrFile[] = [
 ];
 
 const folderColors: Record<string, string> = {
-  _hello: "fill-[#FEA55F]",
-  "_about-me": "fill-[#43D9AD]",
-  _projects: "fill-[#E99287]",
-  _contact: "fill-[#C98BDF]",
-};
+    "_hello": 'text-[#FEA55F]',
+    "_about-me": 'text-[#43D9AD]',
+    "_projects": 'text-[#E99287]',
+    "_contact-me": 'text-[#C98BDF]',
+  };
 
 const Menu = ({ isVisible }: { isVisible: boolean }) => {
     const [openFolders, setOpenFolders] = useState<{ [key: string]: boolean }>(
@@ -50,7 +50,7 @@ const Menu = ({ isVisible }: { isVisible: boolean }) => {
   };
 
   return (
-    <nav className="p-4 bg-primary-100">
+    <nav className="p-4 border-t border-y-lines backdrop-blur-sm">
       {folderStructure.map((folder) => (
         <div
           key={folder.name}

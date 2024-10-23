@@ -3,21 +3,21 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #011221; /* Cambia el fondo predeterminado */
+  --foreground: #FFFFFF; /* Cambia el color del texto predeterminado */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #011221; /* Fondo en modo oscuro */
+    --foreground: #FFFFFF; /* Texto en modo oscuro */
   }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: 'Fira Code', monospace; /* Cambié aquí la fuente */
+  color: var(--foreground); /* Aplica el color del texto */
+  background: var(--background); /* Aplica el fondo */
+  font-family: 'Fira Code', monospace;
 }
 
 @layer utilities {
