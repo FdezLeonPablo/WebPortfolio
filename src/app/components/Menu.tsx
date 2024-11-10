@@ -29,18 +29,18 @@ const folderStructure: FolderOrFile[] = [
 ];
 
 const folderColors: Record<string, string> = {
-    "_hello": 'text-[#FEA55F]',
-    "_about-me": 'text-[#43D9AD]',
-    "_projects": 'text-[#E99287]',
-    "_contact-me": 'text-[#C98BDF]',
-  };
+  _hello: "text-[#FEA55F]",
+  "_about-me": "text-[#43D9AD]",
+  _projects: "text-[#E99287]",
+  "_contact-me": "text-[#C98BDF]",
+};
 
 const Menu = ({ isVisible }: { isVisible: boolean }) => {
-    const [openFolders, setOpenFolders] = useState<{ [key: string]: boolean }>(
-        
-        {}
-    );
-    if (!isVisible) return null;
+  console.log("Menu visibiliry:", isVisible);
+
+  const [openFolders, setOpenFolders] = useState<{ [key: string]: boolean }>(
+    {}
+  );
 
   const toggleFolder = (folderName: string) => {
     setOpenFolders((prevState) => ({
@@ -50,7 +50,15 @@ const Menu = ({ isVisible }: { isVisible: boolean }) => {
   };
 
   return (
-    <nav className="p-4 border-t border-y-lines backdrop-blur-sm">
+    <nav
+      className={`p-4 backdrop-blur-sm transition-transform duration-300 transform border-b border-r border-lines overflow-hidden
+    ${
+      isVisible ? "translate-y-0" : "-translate-y-full"
+    }
+    md:top-[64px] md:left-0 md:w-64 md:h-[calc(100vh-64px)] md:fixed md:z-10 md:${
+      isVisible ? "translate-x-0" : "-translate-x-full"
+      }`}
+    >
       {folderStructure.map((folder) => (
         <div
           key={folder.name}

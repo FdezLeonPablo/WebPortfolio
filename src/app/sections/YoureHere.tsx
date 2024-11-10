@@ -15,7 +15,7 @@ export const YoureHere = () => {
               Leon
             </h2>
             <p className="text-xl bg-[linear-gradient(to_right,#fea55f,#E99287,#C98BDF,#43D9AD,#C98BDF,#E99287,#FEA55F)] [background-size:200%] text-transparent bg-clip-text text-left pt-3">
-              Frontend Developer
+                Software Engineer
             </p>
           </div>
         </div>
