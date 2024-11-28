@@ -35,12 +35,8 @@ const folderColors: Record<string, string> = {
   "_contact-me": "text-[#C98BDF]",
 };
 
-const Menu = ({ isVisible }: { isVisible: boolean }) => {
-  console.log("Menu visibiliry:", isVisible);
-
-  const [openFolders, setOpenFolders] = useState<{ [key: string]: boolean }>(
-    {}
-  );
+const Menu = ({ isVisible, onFileClick }) => {
+  const [openFolders, setOpenFolders] = useState<{ [key: string]: boolean }>({});
 
   const toggleFolder = (folderName: string) => {
     setOpenFolders((prevState) => ({
@@ -52,34 +48,39 @@ const Menu = ({ isVisible }: { isVisible: boolean }) => {
   return (
     <nav
       className={`p-4 backdrop-blur-sm transition-transform duration-300 transform border-b border-r border-lines overflow-hidden
-    ${
-      isVisible ? "translate-y-0" : "-translate-y-full"
-    }
-    md:top-[64px] md:left-0 md:w-64 md:h-[calc(100vh-64px)] md:fixed md:z-10 md:${
-      isVisible ? "translate-x-0" : "-translate-x-full"
+      ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      }
+      md:top-[64px] md:left-0 md:w-64 md:h-[calc(100vh-64px)] md:fixed md:z-10 md:${
+        isVisible ? "translate-x-0" : "-translate-x-full"
       }`}
     >
       {folderStructure.map((folder) => (
-        <div
-          key={folder.name}
-          onClick={() => toggleFolder(folder.name)}
-          className="cursor-pointer"
-        >
-          <span className="flex items-center text-sm text-secondary-100 mb-1">
-            {openFolders[folder.name] ? (
-              <ArrowDownIcon className="w-4 h-4 mr-2" />
-            ) : (
-              <ArrowRightIcon className="w-4 h-4 mr-2" />
-            )}
-            <FolderIcon
-              className={`w-4 h-4 mr-2 ${folderColors[folder.name]}`}
-            />
-            {folder.name}
-          </span>
+        <div key={folder.name} className="cursor-pointer">
+          <div onClick={() => toggleFolder(folder.name)}>
+            <span className="flex items-center text-sm text-secondary-100 mb-1">
+              {openFolders[folder.name] ? (
+                <ArrowDownIcon className="w-4 h-4 mr-2" />
+              ) : (
+                <ArrowRightIcon className="w-4 h-4 mr-2" />
+              )}
+              <FolderIcon
+                className={`w-4 h-4 mr-2 ${folderColors[folder.name]}`}
+              />
+              {folder.name}
+            </span>
+          </div>
           {openFolders[folder.name] && folder.files && (
             <ul className="pl-6 text-sm text-secondary-100">
               {folder.files.map((file) => (
-                <li key={file.name} className="flex items-center mb-1">
+                <li
+                  key={file.name}
+                  className="flex items-center mb-1 cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent toggling the folder
+                    onFileClick(file.name);
+                  }}
+                >
                   {file.name}
                 </li>
               ))}
